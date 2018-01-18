@@ -1,0 +1,52 @@
+{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+    {%- block head %}
+    <title>{% block title %}{{title|default}}{% endblock title %}</title>
+
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
+
+    {%- block styles %}
+    <!-- Bootstrap -->
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    {%- endblock styles %}
+    {%- endblock head %}
+  </head>
+<body {% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+      {% include("partials/_nav.html")%}
+    <!-- {% block navbar %}
+    {%- endblock navbar %} -->
+    <div class="container">
+      {% block content -%}
+      {%- endblock content %}
+    </div>
+
+    {% block scripts %}
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( ".datepicker" ).datepicker({dateFormat:'yy-mm-dd'});
+    });
+    </script>
+
+    {%- endblock scripts %}
+    {%- endblock body %}
+
+    {% block inline_style_js  -%}
+    {%- endblock inline_style_js %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}
