@@ -9,9 +9,9 @@ dashboard_controller = Blueprint('dashboard', __name__, url_prefix='/')
 
 
 @dashboard_controller.route('/', methods=['GET'])
-def dashboard():
+def index():
     last = ProductModel.get_last()
-    last.name = "boroo 3"
+    last.name = "boroo 1"
     ProductModel.commit(last)
     # if request.args['type'] == 'json':
     products = ProductModel.get_list()

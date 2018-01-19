@@ -30,9 +30,11 @@ def create_app(config_name):
     
     # Import controllers
     from app.controllers.dashboard import dashboard_controller
+    from app.controllers.product.views import product_controller
 
     # Register blueprint(s)
     app.register_blueprint(dashboard_controller)
+    app.register_blueprint(product_controller)
 
     @app.template_filter('currency')
     def currency_filter(s):
