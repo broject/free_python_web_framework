@@ -22,4 +22,4 @@ def edit(product_id):
 
 @product_controller.route('/save', methods=['POST'])
 def save(product_id):
-    return jsonify('Saved! ' + str(product_id))
+    return jsonify('Editing! ' + str(product_id))

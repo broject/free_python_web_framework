@@ -17,16 +17,15 @@ depends_on = None
 
 
 def upgrade():
-    import datetime
-    from sqlalchemy import func, text
+    from sqlalchemy import text
     op.add_column('product', sa.Column(
-        'created', sa.TIMESTAMP, nullable=False,
+        'created_at', sa.TIMESTAMP, nullable=False,
         server_default=text('CURRENT_TIMESTAMP')))
     op.add_column('product', sa.Column(
-        'updated', sa.TIMESTAMP, nullable=False,
+        'updated_at', sa.TIMESTAMP, nullable=False,
         server_default=text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')))
 
 
 def downgrade():
-    op.drop_column('product', 'created')
-    op.drop_column('product', 'updated')
+    op.drop_column('product', 'created_at')
+    op.drop_column('product', 'updated_at')

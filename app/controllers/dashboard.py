@@ -10,9 +10,14 @@ dashboard_controller = Blueprint('dashboard', __name__, url_prefix='/')
 
 @dashboard_controller.route('/', methods=['GET'])
 def index():
-    last = ProductModel.get_last()
-    last.name = "boroo 1"
-    ProductModel.commit(last)
-    # if request.args['type'] == 'json':
-    products = ProductModel.get_list()
+    import uuid
+
+    last = ProductModel.get_first()
+    if last is None:
+        last = ProductModel()
+
+    last.name = str(uuid.uuid4())
+    last.save()
+
+    products = last.get_list()
     return jsonify(products=products)

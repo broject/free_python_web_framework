@@ -18,11 +18,12 @@ depends_on = None
 
 def upgrade():
     op.create_table('product',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=100), nullable=True),
-    sa.Column('deleted', sa.Boolean(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
-    )
+                    sa.Column('id', sa.Integer(), nullable=False),
+                    sa.Column('name', sa.String(length=100), nullable=False),
+                    sa.Column('deleted', sa.Boolean(),
+                              nullable=False, default=0),
+                    sa.PrimaryKeyConstraint('id')
+                    )
 
 
 def downgrade():
