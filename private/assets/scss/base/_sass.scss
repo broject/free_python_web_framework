@@ -1,0 +1,112 @@
+/* === sass mixin === */
+@mixin border-radius($radius, $topRight:"", $bottomRight:"", $bottomLeft:"", $important:"") {
+    @if $bottomLeft != "" {
+        border-radius: $radius $topRight $bottomRight $bottomLeft unquote($important);
+        -moz-border-radius: $radius $topRight $bottomRight $bottomLeft unquote($important);
+        -webkit-border-radius: $radius $topRight $bottomRight $bottomLeft unquote($important);
+    } 
+    @else {
+        @if $bottomRight != "" {
+            border-radius: $radius $topRight $bottomRight unquote($important);
+            -moz-border-radius: $radius $topRight $bottomRight unquote($important);
+            -webkit-border-radius: $radius $topRight $bottomRight unquote($important);
+        }
+        @else {
+            @if $topRight != "" {
+                border-radius: $radius $topRight unquote($important);
+                -moz-border-radius: $radius $topRight unquote($important);
+                -webkit-border-radius: $radius $topRight unquote($important);
+            }
+            @else {
+                -webkit-border-radius: $radius unquote($important);
+                -moz-border-radius: $radius unquote($important);
+                -ms-border-radius: $radius unquote($important);
+                border-radius: $radius unquote($important);
+            }
+        }
+    }
+}
+@mixin box-shadow-none() {
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;
+}
+@mixin box-shadow($horiz, $vert, $BlurRadius, $SpreadRadius:0px, $color:rgba(0,0,0,0.25), $inset:"") {
+    -webkit-box-shadow: unquote($inset) $horiz $vert $BlurRadius $SpreadRadius $color!important;
+    -moz-box-shadow: unquote($inset) $horiz $vert $BlurRadius $SpreadRadius $color!important;
+    box-shadow: unquote($inset) $horiz $vert $BlurRadius $SpreadRadius $color!important;
+}
+@mixin opacity($float) {
+    opacity: $float;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0000000,endColorstr=#a0000000);
+}
+@mixin opacity_white($float) {
+    opacity: $float;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0FFFFFF,endColorstr=#a0FFFFFF);
+}
+
+/*.element {  animation:     stretch    1.5s    ease-out    0s    alternate    infinite    none    running;}*/
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content; 
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    } 
+}
+/*
+@include keyframes(no-anim) {
+}*/
+
+@mixin animation ($stuff ) {
+    -webkit-animation: $stuff;
+    -moz-animation: $stuff;
+    -ms-animation: $stuff;
+    animation: $stuff;
+}
+
+@mixin transition ($stuff, $secondly:"", $thirdly:"") {
+    @if $thirdly != "" {
+        -webkit-transition: $stuff, $secondly, $thirdly;
+        -moz-transition: $stuff, $secondly, $thirdly;
+        -ms-transition: $stuff, $secondly, $thirdly;
+        transition: $stuff, $secondly, $thirdly;
+    } 
+    @else {
+        @if $secondly != "" {
+            -webkit-transition: $stuff, $secondly;
+            -moz-transition: $stuff, $secondly;
+            -ms-transition: $stuff, $secondly;
+            transition: $stuff, $secondly;
+        } 
+        @else {
+            -webkit-transition: $stuff;
+            -moz-transition: $stuff;
+            -ms-transition: $stuff;
+            transition: $stuff;
+        }
+    }
+}
+
+@mixin transform ($stuff, $secondly:"") {
+    @if $secondly != "" {
+        -webkit-transform: $stuff, $secondly;
+        -ms-transform: $stuff, $secondly;
+        -o-transform: $stuff, $secondly;
+        transform: $stuff, $secondly;
+    } 
+    @else {
+        -webkit-transform: $stuff;
+        -moz-transform: $stuff;
+        -ms-transform: $stuff;
+        transform: $stuff;
+    }
+}
+
+/* === sass mixin === */

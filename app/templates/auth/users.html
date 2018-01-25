@@ -1,0 +1,68 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}iBarimt{% endblock %}
+{% block content %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div class="panel panel-default">
+              <div class="panel-heading">
+          			<h3 class="panel-title">Хэрэглэгч
+                      <a href="{{ url_for('user.register') }}" style="color:whitesmoke;" class="btn btn-xs btn-primary pull-right ">
+                      <i class="fa fa-plus"></i>
+                      Шинэ хэрэглэгч нэмэх
+                    </a>
+                </h3>
+          	  </div>
+              <div class="panel-body">
+                 {{ utils.flashed_messages() }}
+                  <br/>
+                  {% if data %}
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th width="20%"> Нэвтрэх нэр </th>
+                            <th width="20%"> Эцэг/эх-ийн нэр </th>
+                            <th width="20%"> Нэр </th>
+                            <th width="20%"> И-мэйл </th>
+                            <th width="10%"> Засах </th>
+                            <th width="10%"> Устгах </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in data %}
+                          <tr>
+                            <td> {{ item.username }} </td>
+                            <td> {{ item.last_name }} </td>
+                            <td> {{ item.first_name }} </td>
+                            <td> {{ item.email }} </td>
+                            <td>
+                              <a href="{{ url_for('user.edit', id=item.id) }}" class="btn btn-xs btn-warning">
+                                <i class="fa fa-pencil"></i> Засах
+                              </a>
+                            </td>
+                            <td>
+                              <a href="{{ url_for('user.destroy', id=item.id) }}" onclick="return confirm('Устгах уу')" class="btn btn-xs btn-danger">
+                                <i class="fa fa-trash"></i> Устгах
+                              </a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+
+                  {% else %}
+                      <div class="alert alert-info"> Мэдээлэл байхгүй байна. </div>
+                  {% endif %}
+              </div>
+              <div class="panel-footer">
+                {{ pagination.info }}
+                {{ pagination.links }}
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+/*
+@include keyframes(submenu-visibler)
+{
+    0% { visibility: hidden; opacity: 0; margin-top: 25px; }
+    1% { visibility: visible; opacity: 0; margin-top: 25px; }
+    60% { visibility: visible; opacity: 0.7; margin-top: 1px; }
+    100% { visibility: visible; opacity: 1; margin-top: 0px; }
+}
+@include keyframes(submenu-hidder)
+{
+    0% { visibility: visible; opacity: 1; margin-top: 0px; }
+    60% { visibility: visible; opacity: 0; margin-top: 15px; }
+    99% { visibility: visible; opacity: 0; margin-top: 25px; }
+    100% { visibility: hidden; opacity: 0; margin-top: 25px; }
+}
+*/
+.main-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    min-height: 100%;
+    width: 200px;
+    background-color: #222d32;
+    z-index: 900;
+    @include transition(transform .3s ease-in-out,width .3s ease-in-out);
+    .sidebar {
+        height: auto;
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            position: relative;
+            a {
+                color: #b8c7ce;
+            }
+        }
+        .sidebar-menu {            
+            li.header {
+                padding: 5px 15px;
+                font-size: 12px;
+                color: #4b646f;
+                background: #1a2226;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            li > a {
+                display: block; 
+                position: relative;
+                padding: 10px;
+                white-space: nowrap;
+                border-left: 5px solid transparent;
+                font-size: 13px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                > i.fa {
+                    width: 20px;
+                }
+            }
+            > li > a > .right-fa-container {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                margin-top: -7px;
+                .fa-angle-left {
+                    width: auto;
+                    height: auto;
+                    padding: 0;
+                    margin-right: 10px;
+                    @include transition(all ease-in-out .3s);
+                }
+            }
+            > li > .menuitem-submenu {
+                display: none;
+                height: auto;
+                margin: 0;
+                background: #2c3b41;
+                overflow: hidden;
+                > li > a {
+                    padding: 8px 5px 8px 25px;
+                }
+            }
+            li:hover > a, li.active > a {
+                color: #fff;
+                background: #1e282c;
+                border-left-color: #286090;
+            }
+            li.active > a > .right-fa-container {
+                .fa-angle-left {
+                    @include transform(rotate(-90deg));
+                }
+            }
+            li.active > .menuitem-submenu {
+                display: block;
+                height: 0;
+                li:hover > a, li.active > a {
+                    color: #fff;
+                    background: transparent;
+                    border-left-color: transparent;
+                }
+            }
+        }
+    }
+}

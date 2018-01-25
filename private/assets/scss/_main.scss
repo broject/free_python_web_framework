@@ -1,0 +1,85 @@
+/* body */
+body {
+    background-color: #E9EAEF;
+}
+/* end body */
+
+/* text */
+li > a, .fonta {
+    /*font-family: 'Roboto Condensed', sans-serif;*/
+    /*<link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">*/
+    /*font-family: 'PT Sans Narrow', sans-serif;*/
+}
+.t-shadow-w {
+    text-shadow: 0px 1px 0 #fff;
+}
+.t-shadow-b {
+    text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+}
+a {
+    color: #000000;
+    &:hover {
+        color: #00f;
+    }
+}
+label {
+
+}
+p {
+    
+}
+/* text */
+
+/* layouts */
+.main-wrapper {
+    height: auto;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.popup-wrapper {
+    position: absolute;
+    z-index: 2000;
+}
+/* end layouts */
+
+/* bootstrap customize */
+.ipanel {
+    position: relative;
+    border-radius: 3px;
+    background: #fff;
+    border-top: 5px solid lightsteelblue;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+    .ipanel-head {
+        padding: 5px 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    .ipanel-body {
+        padding: 10px;
+    }
+    .ipanel-foot {
+        padding: 5px 10px;
+        border-top: 1px solid #ccc;
+    }
+    &.ipanel-warning {
+        border-top: 5px solid darkorange;
+    }
+    &.ipanel-primary {
+        border-top: 5px solid #4082B4;
+    }
+    &.ipanel-info {
+        border-top: 5px solid skyblue;
+    }
+    &.ipanel-danger {
+        border-top: 5px solid #dd4433;
+    }
+    &.ipanel-success {
+        border-top: 5px solid #00a55a;
+    }
+    &.ipanel-silver {
+        border-top: 5px solid #c3c6c9;
+    }
+}
+/* end bootstrap customize */

@@ -5,14 +5,13 @@ from flask_responses import json_response, xml_response, auto_response
 from app import db
 from app.models.product_model import product_model as ProductModel
 
-product_controller = Blueprint('product', __name__, url_prefix='/product')
+product_controller = Blueprint('product', __name__, url_prefix='/api/product')
 
 
 @product_controller.route('/', methods=['GET'])
-def index():
-    url = url_for('static', filename='style.css')
-    curl = url_for("product.edit", product_id=1)
-    return jsonify(url=url, curl=curl)
+def index_GET():
+    list = ProductModel.get_list()
+    return jsonify(products=list)
 
 
 @product_controller.route('/edit/<int:product_id>', methods=['GET'])

@@ -1,0 +1,84 @@
+{% extends "base.html" %} 
+{% block title %} {{title}} {% endblock %} 
+{% block content %}
+
+<section class="content-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="ipanel">
+                <div class="ipanel-head">
+                    <strong>{{title}}</strong>
+                    <span class="clearfix">
+                        <div class="label label-success">Notification</div>
+                    </span>
+                </div>
+                <div class="ipanel-body">
+
+                    {% if products %}
+                    <table id="item-list" class="display cell-border dataTable" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Нэр</th>
+                                <th>Код</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in products %}
+                            <tr>
+                                <td>
+                                    <a href="">{{item.id}}</a>
+                                </td>
+                                <td>{{item.barcode}}</td>
+                                <td>{{item.name}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Нэр</th>
+                                <th>Код</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    {% else %}
+                    <div class="alert alert-info"> Мэдээлэл байхгүй байна! </div>
+                    {% endif %}
+
+                </div>
+                <div class="ipanel-foot">
+                    <a class="btn btn-success">Бараа бүртгэх</a>
+                    {{ pagination.info }}
+                    {{ pagination.links }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <link href="{{static_url('shared/datatables/media/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+{% endblock %}
+{% block scripts %}
+    {{super()}}
+    <script src="{{static_url('shared/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+{% endblock %}
+{% block inline_scripts %}
+<script>
+    $(document).ready(function() {
+        var table = $('#item-list').DataTable({
+            "classes": {"sFilterInput": 'form-control'},
+            "language": {"search": "Шүүлт: _INPUT_"},
+            "info": false,
+            "paging": false,
+            "lengthChange": false,
+            "searching": false
+        });
+        table.column('1:visible').order('desc').draw();
+    });
+</script>
+{% endblock %}

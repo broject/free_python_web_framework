@@ -1,0 +1,17 @@
+.main-footer {
+    background: #E9EAEF;
+    padding: 5px 15px;
+    color: #6C6C6C;
+    font-size: 11px;
+    border-top: 1px solid #ccc;
+    font-weight: bold;
+    margin-left: 200px;
+    z-index: 850;
+    @include transition(transform .3s ease-in-out,margin .3s ease-in-out);
+    a {
+        color: #6C6C6C;
+        &:hover {
+            color: #333;
+        }
+    }
+}

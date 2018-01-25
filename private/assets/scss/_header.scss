@@ -1,0 +1,32 @@
+.main-header {
+    position: relative;
+    height: 50px;
+    overflow: hidden;
+    background-color:#286090;
+    z-index: 1000;
+    .logo {
+        @include transition(width .3s ease-in-out);
+        display: block;
+        float: left;
+        height: 50px;
+        font-size: 20px;
+        line-height: 50px;
+        text-align: center;
+        width: 200px;
+        padding: 0 15px;
+        background: #204d74;
+        color: #fff;
+        overflow: hidden;
+        .logo-collapse {
+            display: none;
+        }
+    }
+    .navbar {
+        @include transition(margin-left .3s ease-in-out);
+        margin-bottom: 0;
+        margin-left: 200px;
+        border: none;
+        min-height: 50px;
+        border-radius: 0;
+    }
+}

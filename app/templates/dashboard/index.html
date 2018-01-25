@@ -1,10 +1,13 @@
-{% extends "base.html" %} {% block title %}iBarimt{% endblock %} {% block content %}
-<section id="dashboard">
-	ok hello world
+{% extends "base.html" %} 
+{% block title %} {{title}} {% endblock %} 
+{% block content %}
+
+<section class="content-container">
+	<div class="row">
+		<div class="col-xs-12">
+			{{config_item('CMS_NAME')}} {{config_item('CMS_VERSION')}}
+		</div>
+	</div>
 </section>
-{% endblock %} {% block inline_style_js %}
-<script>
-	$(function () {
-		alert('hello world');
-	});
-</script> {% endblock %}
+
+{% endblock %} 

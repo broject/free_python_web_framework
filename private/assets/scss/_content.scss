@@ -1,0 +1,23 @@
+.content-wrapper {
+    @include transition(transform .3s ease-in-out,margin .3s ease-in-out);
+    margin-left: 200px;
+    background-color: transparent;
+    min-height: 100%;
+    z-index: 800;
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+    .content-container {
+        min-height: 250px;
+        padding: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        &:before, &:after {
+            content: " ";
+            display: table;
+        }
+    }
+}

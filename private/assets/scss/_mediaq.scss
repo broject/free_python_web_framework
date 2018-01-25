@@ -1,0 +1,24 @@
+@media (min-width: 768px) {
+    .sidebar-collapse {
+        .main-header {
+            .logo {
+                .logo-collapse {
+                    display: block;
+                }
+                .logo-extend {
+                    display: none;
+                }
+            }
+            .navbar {
+                margin-left: 50px;
+            }
+        }
+        .main-sidebar {
+            transform: translate(0, 0);
+            width: 50px !important;
+        }
+        .content-wrapper, .main-footer {
+            margin-left: 50px !important;
+        }
+    }
+}
