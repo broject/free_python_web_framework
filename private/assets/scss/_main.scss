@@ -1,6 +1,10 @@
 /* body */
 body {
-    background-color: #E9EAEF;
+    background-color: #FCFCFC;
+    font-family: Roboto, Arial, sans-serif;
+    &.with-bg {
+        background-color: #F0F0F3;
+    }
 }
 /* end body */
 
@@ -39,7 +43,7 @@ p {
 }
 .popup-wrapper {
     position: absolute;
-    z-index: 2000;
+    z-index: 5000;
 }
 /* end layouts */
 
@@ -48,20 +52,19 @@ p {
     position: relative;
     border-radius: 3px;
     background: #fff;
-    border-top: 5px solid lightsteelblue;
     margin-bottom: 20px;
     width: 100%;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
     .ipanel-head {
         padding: 5px 10px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #DDD;
     }
     .ipanel-body {
         padding: 10px;
     }
     .ipanel-foot {
         padding: 5px 10px;
-        border-top: 1px solid #ccc;
+        border-top: 1px solid #DDD;
     }
     &.ipanel-warning {
         border-top: 5px solid darkorange;

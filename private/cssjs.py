@@ -12,15 +12,6 @@ if not path.isdir(css_from_dir):
 if not path.isdir(css_to_dir):
     os.mkdir(css_to_dir)
 
-# scss = """\
-# $theme_color: #cc0000;
-# body {
-#     background-color: $theme_color;
-# }
-# """
-# with open(css_from_dir + '/example.scss', 'w') as example_scss:
-#     example_scss.write(scss)
-
 print('SASS Compile: working...')
 sass.compile(dirname=(css_from_dir, css_to_dir), output_style='compressed')
 # with open(to_dir + '/example.css') as example_css:

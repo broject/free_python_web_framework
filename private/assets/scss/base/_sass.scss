@@ -31,10 +31,24 @@
     -moz-box-shadow: none!important;
     box-shadow: none!important;
 }
-@mixin box-shadow($horiz, $vert, $BlurRadius, $SpreadRadius:0px, $color:rgba(0,0,0,0.25), $inset:"") {
-    -webkit-box-shadow: unquote($inset) $horiz $vert $BlurRadius $SpreadRadius $color!important;
-    -moz-box-shadow: unquote($inset) $horiz $vert $BlurRadius $SpreadRadius $color!important;
-    box-shadow: unquote($inset) $horiz $vert $BlurRadius $SpreadRadius $color!important;
+@mixin box-shadow($stuff, $secondly:"", $thirdly:"") {
+    @if $thirdly != "" {
+        -webkit-box-shadow: $stuff, $secondly, $thirdly;
+        -moz-box-shadow: $stuff, $secondly, $thirdly;
+        box-shadow: $stuff, $secondly, $thirdly;
+    } 
+    @else {
+        @if $secondly != "" {
+            -webkit-box-shadow: $stuff, $secondly;
+            -moz-box-shadow: $stuff, $secondly;
+            box-shadow: $stuff, $secondly;
+        } 
+        @else {
+            -webkit-box-shadow: $stuff;
+            -moz-box-shadow: $stuff;
+            box-shadow: $stuff;
+        }
+    }
 }
 @mixin opacity($float) {
     opacity: $float;
@@ -45,26 +59,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#a0FFFFFF,endColorstr=#a0FFFFFF);
 }
 
-/*.element {  animation:     stretch    1.5s    ease-out    0s    alternate    infinite    none    running;}*/
-@mixin keyframes($name) {
-    @-webkit-keyframes #{$name} {
-        @content; 
-    }
-    @-moz-keyframes #{$name} {
-        @content;
-    }
-    @-ms-keyframes #{$name} {
-        @content;
-    }
-    @keyframes #{$name} {
-        @content;
-    } 
-}
-/*
-@include keyframes(no-anim) {
-}*/
-
-@mixin animation ($stuff ) {
+@mixin animation ($stuff) {
     -webkit-animation: $stuff;
     -moz-animation: $stuff;
     -ms-animation: $stuff;
@@ -109,4 +104,22 @@
     }
 }
 
+/*.element {  animation:     stretch    1.5s    ease-out    0s    alternate    infinite    none    running;}*/
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content; 
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    } 
+}
+/*
+@include keyframes(no-anim) {
+}*/
 /* === sass mixin === */

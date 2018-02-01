@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 {% block title %} {{title}} {% endblock %} 
+{% block body_attribs %} class="with-bg"{% endblock body_attribs %}
 {% block content %}
 
 <section class="content-container">
@@ -15,7 +16,7 @@
                 <div class="ipanel-body">
 
                     {% if products %}
-                    <table id="item-list" class="display cell-border dataTable" cellspacing="0" width="100%">
+                    <table id="std-table" class="display dataTable" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -48,7 +49,7 @@
 
                 </div>
                 <div class="ipanel-foot">
-                    <a class="btn btn-success">Бараа бүртгэх</a>
+                    <a class="btn btn-primary">Бараа бүртгэх</a>
                     {{ pagination.info }}
                     {{ pagination.links }}
                 </div>
@@ -70,14 +71,7 @@
 {% block inline_scripts %}
 <script>
     $(document).ready(function() {
-        var table = $('#item-list').DataTable({
-            "classes": {"sFilterInput": 'form-control'},
-            "language": {"search": "Шүүлт: _INPUT_"},
-            "info": false,
-            "paging": false,
-            "lengthChange": false,
-            "searching": false
-        });
+        var table = $('#std-table').data('table')
         table.column('1:visible').order('desc').draw();
     });
 </script>

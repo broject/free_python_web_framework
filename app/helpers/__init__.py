@@ -38,7 +38,11 @@ class Helper:
             Bundle('assets/js/addons/jqextends.min.js'),
             Bundle('assets/js/app.min.js')
         )
-        js_all = Bundle(jss,
-                        filters='jsmin',
-                        output='assets/js/all.js')
+        js_all = Bundle(jss, filters='jsmin', output='assets/js/all.js')
         assets.register('js_all', js_all)
+
+        css = Bundle(
+            Bundle('assets/css/style.css')
+        )
+        css_all = Bundle(css, filters='less,cssmin', output='assets/css/all.css')
+        assets.register('css_all', css_all)

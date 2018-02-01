@@ -1,9 +1,19 @@
 <header class="main-header">
 
-  <a href="https://localhost/" class="logo">
+  <div class="logo-container">
     <span class="logo-collapse">ЦЭС</span>
-    <span class="logo-extend">{{config_item('CMS_TITLE')}}</span>
-  </a>
+    <div class="logo-extend">
+      <a href="javascript:void(0);" id="toggler-sidebar">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a href="{{site_url()}}" class="logo">
+        <span class="lo1">O</span>
+        <span class="ld2">d</span>
+        <span class="lo3">O</span>
+        <span class="lv4">v{{config_item('CMS_VERSION')}}</span>
+      </a>
+    </div>
+  </div>
 
   <nav class="navbar navbar-static-top">
     <!-- Sidebar toggle button-->
@@ -17,5 +27,5 @@
     </div>
 
   </nav>
-  
+
 </header>

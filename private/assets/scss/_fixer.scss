@@ -1,3 +1,9 @@
 table.dataTable thead, table.dataTable tfoot {
-    font-size: 12px;
+    font-size: 12px !important;
+}
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid #ddd !important;
+}
+table.dataTable tfoot th, table.dataTable tfoot td {
+    border-top: 2px solid #ddd !important;
 }

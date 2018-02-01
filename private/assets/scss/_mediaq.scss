@@ -1,14 +1,6 @@
 @media (min-width: 768px) {
     .sidebar-collapse {
         .main-header {
-            .logo {
-                .logo-collapse {
-                    display: block;
-                }
-                .logo-extend {
-                    display: none;
-                }
-            }
             .navbar {
                 margin-left: 50px;
             }
@@ -16,6 +8,66 @@
         .main-sidebar {
             transform: translate(0, 0);
             width: 50px !important;
+            .sidebar-menu {  
+                > li.header {
+                    display: none;
+                }
+                > li > a {
+                    text-overflow: clip;
+                }
+                > li > a > span {
+                    display: none;
+                }
+                > li:hover > .menuitem-submenu {
+                    display: block !important;
+                    position: absolute !important;
+                    left: 100%;
+                    top: 100%;
+                    padding: 0;
+                    width: 200px;
+                    overflow: hidden;
+                    @include box-shadow(2px 2px 2px rgba(0,0,0,0.2));
+                    li > a {
+                        background: #F0F0F3;
+                        color: #333;
+                        padding: 10px 15px;                        
+                        &:hover {
+                            color: #000;
+                        }
+                    }
+                    li {
+                        &:first-child a {
+                            padding-top: 20px;
+                        }
+                        &:last-child a {
+                            padding-bottom: 20px;
+                        }
+                    }
+                }
+                > li:hover > a {
+                    background: #E0E0E3;
+                    text-overflow: inherit;
+                    overflow: inherit;
+                }
+                > li:hover > a > span {
+                    position: absolute;
+                    left: 100%;
+                    top: 0;
+                    height: 50px;
+                    width: 200px;
+                    background: #E0E0E3;
+                    color: #333;
+                    display: block;
+                    padding: 15px 20px 15px;
+                    @include box-shadow(2px 2px 2px rgba(0,0,0,0.2));
+                    &.right-fa-container {
+                        display: none !important;
+                    }
+                }
+            }
+            .sidebar, .slimScrollDiv {
+                overflow: inherit !important;
+            }
         }
         .content-wrapper, .main-footer {
             margin-left: 50px !important;

@@ -1,7 +1,7 @@
 .content-wrapper {
     @include transition(transform .3s ease-in-out,margin .3s ease-in-out);
-    margin-left: 200px;
-    background-color: transparent;
+    margin-left: 250px;
+    padding-top: 50px;
     min-height: 100%;
     z-index: 800;
     &:before, &:after {

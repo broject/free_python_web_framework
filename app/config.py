@@ -21,6 +21,7 @@ class DevelopmentConfig(Config):
     CMS_VERSION = "1.0.0"
 
     DEBUG = True
+    SITE_URL = 'https://localhost:5000/'
 
 class ProductionConfig(Config):
     """
