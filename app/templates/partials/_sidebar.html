@@ -2,22 +2,10 @@
 
     <section class="sidebar">
         
-        <div class="user-panel hidden">
-            <div class="pull-left image">
-                <img src="https://new-gangnam.com/themes/dist/img/default-user-avatar.png" class="img-circle" alt="root">
-            </div>
-            <div class="pull-left info">
-                <p>boldbaatar b</p>
-                <a href="javascript">
-                    <i class="fa fa-circle text-success"></i>
-                </a>
-            </div>
-        </div>
-
         <ul class="sidebar-menu">
             <li class="header">Үндсэн цэс</li>
             <li>
-                <a href="https://new-gangnam.com/app">
+                <a href="app">
                     <i class="fa fa-dashboard fa-line-chart"></i>
                     <span>Хянах самбар</span>
                 </a>
@@ -33,15 +21,21 @@
                 <ul class="menuitem-submenu">
                     <li>
                         <a href="{{url_for('product.index')}}">
-                            <i class="fa fa-object-group"></i>Компани</a>
+                            <i class="fa fa-object-group"></i>
+                            <span>Компани</span>
+                        </a>
                     </li>
                     <li>
                         <a href="{{url_for('product.index')}}">
-                            <i class="fa fa-user-md"></i>Бараа</a>
+                            <i class="fa fa-user-md"></i>
+                            <span>Бараа</span>
+                        </a>
                     </li>
                     <li>
                         <a href="{{url_for('product.index')}}">
-                            <i class="fa fa-paperclip"></i>Харилцагчид</a>
+                            <i class="fa fa-paperclip"></i>
+                            <span>Харилцагчид</span>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -55,12 +49,16 @@
                 </a>
                 <ul class="menuitem-submenu">
                     <li>
-                        <a href="https://new-gangnam.com/app/lombard" title="Бараа захиалах">
-                            <i class="fa fa-list"></i>Бараа татан авалт</a>
+                        <a href="app/lombard" title="Бараа татан авалт">
+                            <i class="fa fa-list"></i>
+                            <span>Бараа татан авалт</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="https://new-gangnam.com/app/lombard" title="Бараа захиалах">
-                            <i class="fa fa-list"></i>Захиалгын хүсэлтүүд</a>
+                        <a href="app/lombard" title="Захиалгын хүсэлтүүд">
+                            <i class="fa fa-list"></i>
+                            <span>Захиалгын хүсэлтүүд</span>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -74,12 +72,16 @@
                 </a>
                 <ul class="menuitem-submenu">
                     <li>
-                        <a href="https://new-gangnam.com/app/accstream" title="Худалдааны цэг">
-                            <i class="fa fa-list"></i>ПОС</a>
+                        <a href="app/accstream" title="Худалдааны цэг">
+                            <i class="fa fa-list"></i>
+                            <span>ПОС</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="https://new-gangnam.com/app/accstream" title="Худалдааны цэг">
-                            <i class="fa fa-list"></i>Тайлан</a>
+                        <a href="app/accstream" title="Худалдааны тайлан">
+                            <i class="fa fa-list"></i>
+                            <span>Тайлан</span>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -99,32 +101,40 @@
                 </a>
                 <ul class="menuitem-submenu">
                     <li>
-                        <a href="https://new-gangnam.com/app/role" title="Системийн хандах эрхүүд">
+                        <a href="app/role" title="Системийн хандах эрхүүд">
                             <i class="fa fa-user-secret"></i>
                             <span>Системийн эрхүүд</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://new-gangnam.com/app/account" title="Системд бүртгэлтэй нийт хэрэглэгчдийг удирдах цонх">
+                        <a href="app/account" title="Системд бүртгэлтэй нийт хэрэглэгчдийг удирдах цонх">
                             <i class="fa fa-user"></i>
                             <span>Хэрэглэгч</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://new-gangnam.com/app/authortype" title="Дэлгүүр, Баар паб, Супермаркет гэх мэт">
-                            <i class="fa fa-sticky-note-o"></i>Харилцагчийн төрөл</a>
+                        <a href="app/authortype" title="Дэлгүүр, Баар паб, Супермаркет гэх мэт">
+                            <i class="fa fa-sticky-note-o"></i>
+                            <span>Харилцагчийн төрөл</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="https://new-gangnam.com/app/author" title="Системд бүртгэлтэй нийт байгууллагуудыг удирдах цонх">
-                            <i class="fa fa-sticky-note"></i>Нийт харилцагчид</a>
+                        <a href="app/author" title="Системд бүртгэлтэй нийт байгууллагуудыг удирдах цонх">
+                            <i class="fa fa-sticky-note"></i>
+                            <span>Нийт харилцагчид</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="https://new-gangnam.com/app/author" title="Системд бүртгэлтэй нийт бараануудыг удирдах цонх">
-                            <i class="fa fa-sticky-note"></i>Нийт бараанууд</a>
+                        <a href="app/author" title="Системд бүртгэлтэй нийт бараануудыг удирдах цонх">
+                            <i class="fa fa-sticky-note"></i>
+                            <span>Нийт бараанууд</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="https://new-gangnam.com/app/setting" title="Системийн ерөнхий тохиргоо">
-                            <i class="fa fa-gear"></i>Тохиргоо</a>
+                        <a href="app/setting" title="Системийн ерөнхий тохиргоо">
+                            <i class="fa fa-gear"></i>
+                            <span>Тохиргоо</span>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -133,6 +143,9 @@
                     <i class="fa fa-book"></i>
                     <span>Тусламж</span>
                 </a>
+            </li>
+            <li class="visible">
+                <div class="gap25"></div>
             </li>
         </ul>
     </section>

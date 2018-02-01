@@ -7,3 +7,9 @@ table.dataTable thead th, table.dataTable thead td {
 table.dataTable tfoot th, table.dataTable tfoot td {
     border-top: 2px solid #ddd !important;
 }
+.btn {
+    @include box-shadow(0 1px 5px 0 rgba(0,0,0,0.2),0 0 3px 0 rgba(0,0,0,0.15) !important);
+    border: 0 !important;
+    padding: 8px 15px;
+    font-size: 12px;
+}

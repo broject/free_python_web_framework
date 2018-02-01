@@ -16,13 +16,69 @@
   </div>
 
   <nav class="navbar navbar-static-top">
-    <!-- Sidebar toggle button-->
-    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-      <span class="sr-only">Toggle navigation</span>
-    </a>
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
+
+        <li class="dropdown notifications-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-bell-o"></i>
+            <span class="label label-warning">10</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header"><h6>Танд 10 мэдэгдэл ирсэн байна.</h6></li>
+            <li class="notif-body">
+              <ul class="notif-list">
+                <li>
+                  <a href="#">
+                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-user text-red"></i> You changed your username
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="footer">
+              <a href="javascript:void(0);">View all</a>
+            </li>
+          </ul>
+        </li>
+
+
+        {% set user_img_url = assets_url('img/avatar-blue.png') %}
+        <li class="dropdown user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+            <img src="{{user_img_url}}" class="user-image" alt="User Image">
+            <span class="hidden-xs">{{config_item('CMS_COMPANY')}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- User image -->
+            <li class="header">
+              <img src="{{user_img_url}}" class="img-avatar" alt="User Image">
+              <p>
+                Alexander Pierce - Web Developer
+                <small>Member since Nov. 2012</small>
+              </p>
+            </li>
+            <li class="footer">
+              <div class="pull-left">
+                <a href="#" class="btn btn-primary">Хувийн мэдээлэл</a>
+              </div>
+              <div class="pull-right">
+                <a href="#" class="btn btn-danger">Гарах</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+
       </ul>
     </div>
 
