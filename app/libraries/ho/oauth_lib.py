@@ -6,7 +6,7 @@ from functools import wraps
 import logging
 
 
-class OdOAuth:
+class oauth_client:
 
     def __init__(self):
         pass

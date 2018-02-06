@@ -1,8 +1,8 @@
 from collections import OrderedDict
 from flask import json, jsonify
+
 from sqlalchemy import func, text
-from sqlalchemy import Boolean, Column, Integer, \
-    String, ForeignKey
+from sqlalchemy import Boolean, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declared_attr
 
 from app import db
@@ -50,8 +50,8 @@ class BaseModel(CoreModel):
 
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.TIMESTAMP)
-    updated_at = db.Column(db.TIMESTAMP)
-    deleted = db.Column(db.Boolean, default=0)
+    modified_at = db.Column(db.TIMESTAMP)
+    deleted = db.Column(db.Boolean, nullable=False, default=False)
 
     @classmethod
     def get_first(self):
@@ -60,3 +60,20 @@ class BaseModel(CoreModel):
     @classmethod
     def get_last(self):
         return self.query.order_by(self.id.desc()).first()
+
+    @classmethod
+    def get_list_all(self):
+        lst = []
+        for item in self.query.order_by(self.id.asc()).all():
+            lst.append(item.as_dict())
+        return lst
+
+
+class FullBaseModel(BaseModel):
+    __abstract__ = True
+
+    created_ip = db.Column(db.String(length=50))
+    created_by = db.Column(db.Integer, db.ForeignKey('user.id'))
+    modified_ip = db.Column(db.String(length=50))
+    modified_by = db.Column(db.Integer, db.ForeignKey('user.id'))
+    ordering = db.Column(db.Integer, nullable=False, default=0)

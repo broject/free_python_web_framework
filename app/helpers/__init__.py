@@ -3,7 +3,7 @@ from flask_assets import Environment, Bundle
 
 class Helper:
     """
-    Helper for global function and assets
+    Helper for global function and assets bundle
     """
     current_app = None
 

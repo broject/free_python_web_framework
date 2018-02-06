@@ -10,12 +10,5 @@ from app.models import BaseModel
 
 
 class product_model(BaseModel):
-    name = db.Column(db.String(100), index=True)
-    barcode = db.Column(db.String(255), index=True)
-
-    @classmethod
-    def get_list(self):
-        product_list = []
-        for item in self.query.all():
-            product_list.append(item.as_dict())
-        return product_list
+    name = db.Column(db.String(150), index=True)
+    barcode = db.Column(db.String(128), index=True, unique=True)

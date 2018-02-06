@@ -13,8 +13,8 @@ db = SQLAlchemy()
 
 
 # Authentication Module
-from app.libraries.odo.odo_auth import OdOAuth
-odo_auth = OdOAuth()
+from app.libraries.ho.oauth_lib import oauth_client
+oauth_service = oauth_client()
 
 
 # Web application instance
@@ -25,9 +25,13 @@ def create_app(config_name):
     from .controllers import register_controllers
     from .helpers import Helper
 
+    # Main module config
+    config = app_config[config_name]
+
+    # App module config
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(app_config[config_name])
-    app.config.from_pyfile('config.py')
+    app.config.from_object(config)
+    app.config.from_pyfile(config.Instance_Config_App)
 
     db.init_app(app)
     Migrate(app, db)
@@ -36,9 +40,9 @@ def create_app(config_name):
     csrf.init_app(app)
 
     # Authentication service
-    odo_auth.init_app(app)
+    oauth_service.init_app(app)
 
-    Bootstrap(app)    
+    Bootstrap(app)
     Compress(app)
 
     # Register blueprint controllers
