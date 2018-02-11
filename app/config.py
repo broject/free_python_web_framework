@@ -28,8 +28,7 @@ class DevelopmentConfig(Config):
     SITE_URL = 'https://localhost:5000/'
     
     # for variables
-    MAX_CONTENT_PATH = 2 * 1024 * 1024
-    SQLALCHEMY_ECHO = True
+    MAX_CONTENT_PATH = 2 * 1024 * 1024    
     PER_PAGE = 10
 
 class ProductionConfig(Config):

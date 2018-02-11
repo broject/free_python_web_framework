@@ -15,7 +15,7 @@ class CoreModel(db.Model):
     @declared_attr
     def __tablename__(cls):
         cn = cls.__name__.lower()
-        _i = cn.rfind('_')
+        _i = cn.rfind('_model')
         if _i > 0:
             return cn[:_i]
         else:
@@ -30,6 +30,7 @@ class CoreModel(db.Model):
 
     def addme(self):
         db.session.add(self)
+        return self
 
     @classmethod
     def commit(self):
@@ -43,6 +44,7 @@ class CoreModel(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+        return self
 
 
 class BaseModel(CoreModel):

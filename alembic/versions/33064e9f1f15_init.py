@@ -17,15 +17,10 @@ depends_on = None
 
 
 def upgrade():
-    op.create_table('product',
-                    sa.Column('id', sa.Integer(), nullable=False),
-                    sa.Column('name', sa.String(150), nullable=False),
-                    sa.Column('barcode', sa.String(128), nullable=False),
-                    sa.PrimaryKeyConstraint('id')
-                    )
     import app.helpers.model_helper as mh
-    mh.upgrade_base_columns('product', op, sa)
+    mh.upgrade_default_entities(op, sa)
 
 
 def downgrade():
-    op.drop_table('product')
+    import app.helpers.model_helper as mh
+    mh.downgrade_default_entities(op)
