@@ -8,6 +8,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 
 from app import db
 from app.models import BaseModel, CoreModel
+from app.models.auth_models import User
 from datetime import datetime, timedelta
 
 
@@ -33,7 +34,7 @@ class Zone(BaseModel):
     name = Column(String(150), nullable=False, unique=True)
     data = Column(Text)
 
-    user = relationship('User', backref=backref('Zone', lazy='dynamic'))
+    user = relationship('User', foreign_keys=[user_id])
 
     def __init__(self, user_id, name):
         self.user_id = user_id
