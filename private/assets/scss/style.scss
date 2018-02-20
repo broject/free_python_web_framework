@@ -4,10 +4,10 @@
 
 @import "base/sass";
 @import "base/base";
-@import "main";
-@import "header";
-@import "sidebar";
-@import "content";
-@import "footer";
-@import "fixer";
-@import "mediaq";
+@import "panel/main";
+@import "panel/header";
+@import "panel/sidebar";
+@import "panel/content";
+@import "panel/footer";
+@import "panel/fixer";
+@import "panel/mediaq";

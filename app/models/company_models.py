@@ -1,7 +1,7 @@
 from flask import json, jsonify
 from sqlalchemy import func, text
 from sqlalchemy import Column, ForeignKey, PrimaryKeyConstraint, \
-    Boolean, Integer, String, Text, Date, DateTime
+    Boolean, Integer, String, Text, Date, DateTime, Float
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.associationproxy import association_proxy
@@ -9,16 +9,71 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from datetime import datetime, timedelta
 from app import db
 from app.models import BaseModel, CoreModel
-from app.models.media_models import Media
+from app.models.shared_models import Media
+from app.models.goods_models import Goods
 
 
+# салбарын барааны үнийн жагсаалт
+class BranchPrice(BaseModel):
+    __tablename__ = 'branch_price'
+
+    branchgoods_id = Column(Integer, ForeignKey('branch_goods.id'))
+    price = Column(Float, nullable=False, default=0)
+    price_cond = Column(String(500))
+    wprice = Column(Float, nullable=False, default=0)
+    wprice_cond = Column(String(500))
+    isdefault = Column(Boolean, nullable=False, default=True)
+
+    branchgoods = relationship("BranchGoods", foreign_keys=[branchgoods_id])
+
+    def __init__(self, branchgoods_id, price=0, wprice=0):
+        self.branchgoods_id = branchgoods_id
+        self.price = price
+        self.wprice = wprice
+
+    def __repr__(self):
+        return '<BranchPrice {} {} {}>'.format(self.branchgoods_id, self.price, self.wprice)
+
+
+# салбарт бүртгэлтэй нийт бараанууд
+class BranchGoods(BaseModel):
+    __tablename__ = 'branch_goods'
+
+    company_id = Column(Integer, ForeignKey('company.id'))
+    branch_id = Column(Integer, ForeignKey('branch.id'))
+    goods_id = Column(Integer, ForeignKey('goods.id'))
+
+    company = relationship('Company', foreign_keys=[company_id])
+    branch = relationship('Branch', foreign_keys=[branch_id])
+    goods = relationship('Goods', foreign_keys=[goods_id])
+
+    # sqlalchemy.exc.InvalidRequestError: On relationship BranchPrice.BranchGoods, 
+    # 'dynamic' loaders cannot be used with many-to-one/one-to-one relationships 
+    # and/or uselist=False.
+    price = relationship("BranchPrice", uselist=False,
+                         primaryjoin="and_(BranchGoods.id==branch_price.c.branchgoods_id, "
+                         "branch_price.c.isdefault==1)",
+                         backref=backref('BranchGoods', uselist=False))
+
+    def __init__(self, company_id, branch_id, goods_id):
+        self.company_id = company_id
+        self.branch_id = branch_id
+        self.goods_id = goods_id
+
+    def __repr__(self):
+        return '<BranchGoods {} {} {}>'.format(self.company_id, self.branch_id, self.goods_id)
+
+
+# *компаний модел
 class Company(BaseModel):
     user_id = Column(Integer, ForeignKey('user.id'))
+    sphere_id = Column(Integer, ForeignKey('sphere.id'))
     business_id = Column(Integer, ForeignKey('business.id'))
     name = Column(String(150), nullable=False, unique=True)
-    reg_number = Column(String(60), nullable=False, unique=True)
+    reg_number = Column(String(50), unique=True)
 
     user = relationship('User')
+    sphere = relationship('Sphere')
     business = relationship('Business')
     branchs = relationship('Branch', back_populates="company")
     # SELECT company_customer.*
@@ -28,7 +83,7 @@ class Company(BaseModel):
                              secondary='company_customer', uselist=True,
                              primaryjoin='company_customer.c.company_id==Company.id',
                              secondaryjoin='company_customer.c.customer_id==Company.id',
-                             backref=backref('Company', lazy = 'dynamic'))
+                             backref=backref('Company', lazy='dynamic'))
     # SELECT company.*
     # FROM company, company_customer
     # WHERE company_customer.company_id = %(param_1)s AND company_customer.customer_id = company.id
@@ -36,16 +91,16 @@ class Company(BaseModel):
                                       secondary='company_customer', uselist=True,
                                       primaryjoin='company_customer.c.company_id==Company.id',
                                       secondaryjoin='company_customer.c.customer_id==Company.id',
-                                      backref=backref('Company', lazy = 'dynamic'))
+                                      backref=backref('Company', lazy='dynamic'))
 
-    def __init__(self, user_id, business_id, name, reg_number):
+    def __init__(self, user_id, sphere_id, business_id, name):
         self.user_id = user_id
+        self.sphere_id = sphere_id
         self.business_id = business_id
         self.name = name
-        self.reg_number = reg_number
 
     def __repr__(self):
-        return '<Company {} {} {}>'.format(self.business_id, self.reg_number, self.name)
+        return '<Company {} {} {} {}>'.format(self.user_id, self.sphere_id, self.business_id, self.name)
 
 
 class CompanyInfo(BaseModel):
@@ -59,7 +114,8 @@ class CompanyInfo(BaseModel):
     email = Column(String(150))
     phone = Column(String(150))
     fax = Column(String(150))
-    website = Column(String(150))
+    weblink = Column(String(1000))
+    address = Column(Text)
     overview = Column(Text)
     policy = Column(Text)
     mission = Column(Text)
@@ -80,6 +136,11 @@ class CompanyInfo(BaseModel):
 class Branch(BaseModel):
     company_id = Column(Integer, ForeignKey('company.id'))
     name = Column(String(150), nullable=False, unique=True)
+    email = Column(String(150))
+    phone = Column(String(150))
+    fax = Column(String(150))
+    weblink = Column(String(1000))
+    address = Column(Text)
 
     # If you use backref you don't need to declare the relationship on the second table
     company = relationship('Company', back_populates="branchs")
@@ -98,7 +159,7 @@ class Branch(BaseModel):
                              secondary='branch_customer', uselist=True,
                              primaryjoin='branch_customer.c.branch_id==Branch.id',
                              secondaryjoin='branch_customer.c.customer_id==Company.id',
-                             backref=backref('Branch', lazy = 'dynamic'))
+                             backref=backref('Branch', lazy='dynamic'))
 
     def __init__(self, company_id, name):
         self.company_id = company_id
@@ -114,6 +175,7 @@ class BranchMember(BaseModel):
     branch_id = Column(Integer, ForeignKey('branch.id'))
     member_id = Column(Integer, ForeignKey('user.id'))
     role_id = Column(Integer, ForeignKey('role.id'))
+    options = Column(Text)
 
     branch = relationship('Branch')
     member = relationship('User')
@@ -123,12 +185,30 @@ class BranchMember(BaseModel):
         return '<BranchMember {} {} {}>'.format(self.branch_id, self.member_id, self.role_id)
 
 
+class BranchZone(BaseModel):
+    __tablename__ = 'branch_zone'
+
+    branch_id = Column(Integer, ForeignKey('branch.id'))
+    zone_id = Column(Integer, ForeignKey('zone.id'))
+    options = Column(Text)
+
+    branch = relationship("Branch", foreign_keys=[branch_id])
+    zone = relationship("Zone", foreign_keys=[zone_id])
+
+    def __init__(self, branch_id, zone_id):
+        self.branch_id = branch_id
+        self.zone_id = zone_id
+
+    def __repr__(self):
+        return '<BranchZone {} {}>'.format(self.branch_id, self.zone_id)
+
+
 class CompanyCustomer(BaseModel):
     __tablename__ = 'company_customer'
 
     company_id = Column(Integer, ForeignKey('company.id'))
     customer_id = Column(Integer, ForeignKey('company.id'))
-    data = Column(Text)
+    options = Column(Text)
 
     company = relationship("Company", foreign_keys=[company_id])
     customer = relationship("Company", foreign_keys=[customer_id])

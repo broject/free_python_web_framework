@@ -13,3 +13,11 @@ table.dataTable tfoot th, table.dataTable tfoot td {
     padding: 8px 15px;
     font-size: 12px;
 }
+.form-group {
+    label {
+        font-size: 12px;
+    }
+    .form-control {
+        font-size: 13px;
+    }
+}

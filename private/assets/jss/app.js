@@ -206,21 +206,23 @@ jQuery(window).load(function () {
         $('#toggler-sidebar').click(function () {
             $('body').toggleClass('sidebar-collapse');
             if ($('body').hasClass('sidebar-collapse')) {
-                $('.sidebar-menu > .menuitem').each(function() {
+                $('.sidebar-menu > .menuitem').each(function () {
                     $(this).removeClass('active');
                 });
             }
         });
         var list_object = $('#std-table');
-        var table = list_object.DataTable({
-            "classes": {"sFilterInput": 'form-control'},
-            "language": {"search": "Шүүлт: _INPUT_"},
-            "info": false,
-            "paging": false,
-            "lengthChange": false,
-            "searching": false
-        });
-        list_object.data('table', table);
+        if (typeof list_object.DataTable === 'function') {
+            var table = list_object.DataTable({
+                "classes": { "sFilterInput": 'form-control' },
+                "language": { "search": "Шүүлт: _INPUT_" },
+                "info": false,
+                "paging": false,
+                "lengthChange": false,
+                "searching": false
+            });
+            list_object.data('table', table);
+        }
         $('#search-q').keydown(function (e) {
             var u = $(this).attr('data-url');
             var q = $(this).val();

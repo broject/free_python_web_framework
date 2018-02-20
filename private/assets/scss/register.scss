@@ -1,0 +1,16 @@
+@import "base/sass";
+@import "base/base";
+.bg {
+    background-image: url('https://livedemo00.template-help.com/wt_60047_v2/starbis-tax-expert/images/bg-image-5.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.block-shadow {
+    width: 300px;
+    margin: 50px auto;
+    background: #fff;
+    .h7 {
+        font: 700 14px/24px Helvetica, Arial, sans-serif;
+        color: #333;
+    }
+}

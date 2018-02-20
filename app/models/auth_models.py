@@ -86,14 +86,14 @@ class RolePermission(CoreModel):
 
 
 class User(BaseModel):
-    username = Column(String(60), nullable=False, unique=True)
+    username = Column(String(50), nullable=False, unique=True)
     email = Column(String(150), nullable=False, unique=True)
     phone = Column(String(150))
     password_salt = Column(String(255))
     password_hash = Column(String(255))
     role_id = Column(Integer, ForeignKey('role.id'))
-    first_name = Column(String(60))
-    last_name = Column(String(60))
+    first_name = Column(String(50))
+    last_name = Column(String(50))
 
     def get_id(self):
         return str(self.id)  # python 3
