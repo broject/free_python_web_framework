@@ -21,5 +21,4 @@ def index():
     print(child)  # <BranchPrice 1 1500.0 1450.0>
     print('END ************************************')
 
-    return 'hello world'
-    # return render_template('dashboard/index.html')
+    return render_template('dashboard/index.html')
